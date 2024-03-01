@@ -1,5 +1,7 @@
 #!/bin/bash
 
+pip install -r requirements.txt
+
 mkdir -p test train
 
 python3 data_creation.py
