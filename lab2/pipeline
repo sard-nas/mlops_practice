@@ -1,0 +1,57 @@
+pipeline {
+    agent any
+    stages {
+        stage('git') {
+            steps {
+                git branch: 'main', url: 'https://github.com/sard-nas/mlops_practice.git'
+            }
+        }
+        
+        stage('requirements') {
+            steps {
+                dir('lab1'){
+                    sh 'pip3 install -r requirements.txt'
+                }
+            }
+        }
+        
+        stage('data creation')
+        {
+            steps {
+                dir('lab1'){
+                    sh '''
+                    mkdir -p test train
+                    python3 data_creation.py
+                '''
+                }
+            }
+        }
+        
+        stage('preprocessing')
+        {
+            steps {
+                dir('lab1'){
+                    sh 'python3 model_preprocessing.py'
+                }
+            }
+        }
+        
+        stage('preparation')
+        {
+            steps {
+                dir('lab1'){
+                    sh 'python3 model_preparation.py'
+                }
+            }
+        }
+        
+        stage('testing')
+        {
+            steps {
+                dir('lab1'){
+                    sh 'python3 model_testing.py'
+                }
+            }
+        }
+    }
+}
