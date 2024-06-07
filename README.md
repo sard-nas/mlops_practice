@@ -27,3 +27,17 @@
   docker-compose build
   docker-compose up
   ```
+
+## Lab 4
+
+#### Управление данными с помощью dvc
+
+[Ссылка на репозиторий](https://github.com/sard-nas/dvc_practice)
+
+- Удалённое хранилище файлов настроено на Google Disk
+- Создано несколько версий датасета о пассажирах “Титаника” - [catboost.titanic](https://catboost.ai/en/docs/concepts/python-reference_datasets_titanic)
+
+
+#### Переключение между версиями датасета
+
+Чтобы переключиться между разными версиями датасета, необходимо откатиться к нужному коммиту (с помощью команды git checkout), а затем загрузить из удалённого репозитория данные (команда dvc pull)
